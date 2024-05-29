@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.lgbg{
+  background-image: url(../src/assets/Rectangle-1.svg);
+
+}
+.Card{
+  background-image: url(../src/assets/rectangle-3.svg);
+}
+.fondo-P{
+  background-image: url(../src/assets/Fondo-P.jpg);
+}
+.fondo-NP{
+  background-image: url(../src/assets/Fondo-N-P.png);
+}
