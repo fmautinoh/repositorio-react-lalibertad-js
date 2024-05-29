@@ -15,7 +15,7 @@ const LoginComponent = () => {
           />
         </div>
         <div className="relative flex-shrink-0 w-full lg:w-5/12 h-full p-8">
-          <div className="relative Card bg-cover h-full p-12 flex flex-col items-center">
+          <div className="relative Card bg-cover h-full p-32 flex flex-col items-center">
             <img className="w-40 h-40" src="src/assets/ASD-1.svg" alt="Avatar" />
             <div className="mt-16 w-3/4">
               <label

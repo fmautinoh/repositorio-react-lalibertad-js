@@ -2,7 +2,14 @@
 export default {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        "small-text": "var(--small-text-font-family)",
+      },
+      boxShadow: {
+        "button-shadow": "var(--button-shadow)",
+      },
+    },
   },
   plugins: [],
 };
