@@ -1,5 +1,4 @@
 import NavbarComponent from "../Navbar";
-import PrincipalContenido from "../PrincipalContenido";
 
 const PrincipalComponent = () => {
   return (

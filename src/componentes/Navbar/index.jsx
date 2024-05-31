@@ -4,26 +4,26 @@ const Navbarcomponent = () => {
   const { user } = loginhooks();
 
   return (
-    <nav className="bg-indigo-600 text-white px-4 py-2 flex justify-between items-center">
-      <div className="flex items-center">
+    <nav className="tw-bg-indigo-600 tw-text-white tw-px-4 tw-py-2 tw-flex tw-justify-between tw-items-center">
+      <div className="tw-flex tw-items-center">
         <img
           src="/src/assets/user-interface.png"
           alt="Usuario"
-          className="w-10 h-10 rounded-full mr-4"
+          className="tw-w-10 tw-h-10 tw-rounded-full tw-mr-4"
         />
-        <span className="text-xl font-bold text-white">
+        <span className="tw-text-xl tw-font-bold tw-text-white">
           {user}
         </span>
       </div>
-      <div className="flex items-center space-x-4">
+      <div className="tw-flex tw-items-center tw-space-x-4">
         <a
           href="#"
-          className="text-lg hover:text-indigo-700"
+          className="tw-text-lg tw-font-bold hover:tw-text-rose-600"
         >
           INICIO
         </a>
         <button
-          className="text-lg font-bold hover:text-indigo-700"
+          className="tw-text-lg tw-font-bold hover:tw-text-rose-600"
         >
           REPOSITORIO
         </button>

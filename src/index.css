@@ -1,6 +1,9 @@
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 .lgbg {
   background-image: url(../src/assets/Rectangle-1.svg);
