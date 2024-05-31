@@ -1,11 +1,11 @@
 const PrincipalContenido = () => {
   return (
-    <div className="absolute inset-0">
-      <div className="relative overflow-y-auto inset-0 flex flex-col items-center lg:items-start lg:top-[14%] lg:left-[5%] lg:right-8 lg:bottom-8 sm:min-w-[80%] sm:min-h-[80%] lg:max-h-[95%] lg:max-w-[90%] sm:left-[1%] sm:top-[15%] Contenido">
+    <div className="absolute lg:h-[100%] lg:w-[100%] sm:h-[40%] sm:w-[90%]">
+      <div className="relative inset-0 flex flex-col items-center lg:items-start lg:top-[14%] lg:left-[5%] lg:right-8 lg:bottom-8 sm:min-w-[40%] sm:min-h-[90%] lg:max-h-[95%] lg:max-w-[90%] sm:left-[1%] sm:top-[15%] Contenido">
         
         <div className="flex flex-col items-center lg:items-start w-full text-center">
           <div
-            className="relative lg:top-16 lg:left-48 lg:w-3/4 text-[#0092FC] lg:text-3xl font-bold sm:text-2xl sm:top-[35%]"
+            className="relative lg:top-16 lg:left-48 lg:w-3/4 text-[#0092FC] lg:text-3xl font-bold sm:text-2xl sm:top-[55%]"
             style={{ fontFamily: "Alfa Slab One", lineHeight: "1.4" }}
           >
             INSTITUCIÓN EDUCATIVA EMBLEMÁTICA “COLEGIO DE LA LIBERTAD”
