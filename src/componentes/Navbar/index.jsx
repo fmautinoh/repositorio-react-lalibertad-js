@@ -4,7 +4,7 @@ const Navbarcomponent = () => {
   const { user } = loginhooks();
 
   return (
-    <nav className="bg-indigo-900 text-white px-4 py-2 flex justify-between items-center">
+    <nav className="bg-indigo-600 text-white px-4 py-2 flex justify-between items-center">
       <div className="flex items-center">
         <img
           src="/src/assets/user-interface.png"
@@ -17,7 +17,7 @@ const Navbarcomponent = () => {
       </div>
       <div className="flex items-center space-x-4">
         <a
-          href="https://youtube.com/shorts/k_6WjFwlt9g?si=uaZ6bZsVDQRciQt4"
+          href="#"
           className="text-lg hover:text-indigo-700"
         >
           INICIO
