@@ -1,15 +1,15 @@
 const PrincipalContenido = () => {
   return (
     <div className="absolute inset-0">
-      <div className="absolute inset-0 flex flex-col items-center lg:items-start lg:top-8 lg:left-[17%] lg:right-8 lg:bottom-8 sm:w-[80%] sm:h-[80%] sm:left-[18%] Contenido">
+      <div className="absolute overflow-y-auto inset-0 flex flex-col items-center lg:items-start lg:top-[14%] lg:left-[5%] lg:right-8 lg:bottom-8 sm:min-w-[80%] sm:min-h-[80%] lg:max-h-[95%] lg:max-w-[90%] sm:left-[1%] sm:top-[15%] Contenido">
         <img
-          className="relative lg:top-[10%] lg:left-[5%] lg:w-40 lg:h-40 shadow-inner rounded-full sm:w-24 sm:h-24 sm:left-[40%] sm:top-[20%] "
+          className="relative lg:top-[8%] lg:left-[3%] lg:w-40 lg:h-40 shadow-inner rounded-full sm:w-24 sm:h-24 sm:top-[8%] sm:left-0 "
           src="src/assets/ASD-1.svg"
           alt="Placeholder Image"
         />
         <div className="flex flex-col items-center lg:items-start w-full text-center">
           <div
-            className="absolute lg:top-20 lg:left-[12%] lg:w-3/4 text-[#0092FC] lg:text-4xl font-bold sm:text-2xl sm:top-[35%]"
+            className="absolute lg:top-20 lg:left-[12%] lg:w-3/4 text-[#0092FC] lg:text-3xl font-bold sm:text-2xl sm:top-[35%]"
             style={{ fontFamily: "Alfa Slab One", lineHeight: "1.4" }}
           >
             INSTITUCIÓN EDUCATIVA EMBLEMÁTICA “COLEGIO DE LA LIBERTAD”

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export const loginhooks = () => {
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState("User");
   const [pswd, setPwsd] = useState("");
 
   const handleIngresarLogin = (e) => {

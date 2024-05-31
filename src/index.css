@@ -1,28 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.lgbg{
+
+.lgbg {
   background-image: url(../src/assets/Rectangle-1.svg);
   background-repeat: no-repeat;
   background-size: cover;
 }
-.Card{
+
+.Card {
   background-image: url(../src/assets/rectangle-3.svg);
   background-repeat: no-repeat;
   background-size: cover;
 }
-.fondo-P{
+
+.fondo-P {
   background-image: url(../src/assets/Fondo-P.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
-.fondo-NP{
+
+.fondo-NP {
   background-image: url(../src/assets/Fondo-N-P.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
-.Contenido{
+
+.Contenido {
   background-image: url(../src/assets/PrincipalContenidoP.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
+
