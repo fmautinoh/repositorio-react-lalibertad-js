@@ -69,6 +69,6 @@ export const loginhooks = () => {
     pswd,
     setPwsd,
     handleIngresarLogin,
-    cargo
+    cargo,
   };
 };
