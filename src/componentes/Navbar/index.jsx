@@ -1,7 +1,7 @@
 import { loginhooks } from "../../hook/LoginLogic";
 
 const Navbarcomponent = () => {
-  const { user } = loginhooks();
+  const { user, cargo } = loginhooks();
 
   return (
     <nav className="tw-bg-indigo-600 tw-text-white tw-px-4 tw-py-2 tw-flex tw-justify-between tw-items-center">
@@ -12,7 +12,7 @@ const Navbarcomponent = () => {
           className="tw-w-10 tw-h-10 tw-rounded-full tw-mr-4"
         />
         <span className="tw-text-xl tw-font-bold tw-text-white">
-          {user}
+          {user} <p>  </p> {cargo}
         </span>
       </div>
       <div className="tw-flex tw-items-center tw-space-x-4">

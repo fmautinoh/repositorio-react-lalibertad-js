@@ -7,6 +7,6 @@ import RepoPrincipal from "./componentes/Repositorio";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <LoginComponent />
+    <RepoPrincipal />
   </React.StrictMode>
 );
