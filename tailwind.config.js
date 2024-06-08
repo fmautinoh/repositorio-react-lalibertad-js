@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  prefix: "tw-", // Añade un prefijo 'tw-' a todas las clases de Tailwind
+  prefix: "", // Añade un prefijo 'tw-' a todas las clases de Tailwind
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
