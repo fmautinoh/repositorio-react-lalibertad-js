@@ -2,27 +2,25 @@ import NavbarComponent from "../Navbar";
 
 const PrincipalComponent = () => {
   return (
-    <div className="absolute lg:w-screen lg:h-screen fondo-P sm:w-[100%] sm:h-[150%]">
+    <div className=" sm:w-[100%] sm:h-[150%]">
       <NavbarComponent />
-      <div className="lg:w-[93%] lg:h-[92%]">
-        <div className="relative flex flex-col items-center lg:items-start lg:top-[4%] lg:left-[5%] lg:right-8 lg:h-[95%] Contenido">
-          <div className="flex flex-col items-center lg:items-start w-full text-center">
+      <div className="p-6">
+        <div className="flex flex-col justify-center items-center  ">
+          <div className="py-10 flex flex-col justify-center items-center gap-4 w-full text-center bg-sky-100 shadow rounded-lg">
             <div
-              className="relative lg:top-[30%] lg:left-48 lg:w-3/4 text-[#0092FC] lg:text-3xl font-bold sm:text-2xl sm:top-[55%]"
-              style={{ fontFamily: "Alfa Slab One", lineHeight: "1.4" }}
+              className="w-full lg:w-3/4 text-[#0092FC] lg:text-3xl font-bold sm:text-2xl"
             >
-              INSTITUCIÓN EDUCATIVA EMBLEMÁTICA “COLEGIO DE LA LIBERTAD”
+              INSTITUCIÓN EDUCATIVA EMBLEMÁTICA <br /> “COLEGIO DE LA LIBERTAD”
             </div>
             <img
-              className="relative lg:top-[47%] lg:left-[45%] lg:w-40 lg:h-40 shadow-inner rounded-full sm:w-24 sm:h-24 sm:top-[8%] sm:left-[20%] "
+              className="lg:w-40 lg:h-40 w-20 h-20"
               src="src/assets/ASD-1.svg"
               alt="Placeholder Image"
             />
             <div
-              className="relative lg:top-[64%] lg:left-[12%] lg:w-3/4 text-[#568BDA] lg:text-4xl font-bold sm:text-xl sm:top-[55%]"
-              style={{ fontFamily: "Amaranth", lineHeight: "1.4" }}
+              className="w-full lg:w-3/4 text-[#568BDA] lg:text-4xl font-bold sm:text-xl"
             >
-              BIENVENIDO AL REPOSITORIO DE DOCUMENTOS ADMINISTRATIVOS
+              BIENVENIDO AL REPOSITORIO DE <br /> DOCUMENTOS ADMINISTRATIVOS
             </div>
           </div>
         </div>
