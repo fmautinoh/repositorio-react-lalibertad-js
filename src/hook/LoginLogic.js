@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
 
 export const loginhooks = () => {
-  const [user, setUser] = useState("rz32");
-  const [id_usu, setId_usu] = useState(1);
+  const [user, setUser] = useState("");
+  const [id_usu, setId_usu] = useState(null);
   const [pswd, setPwsd] = useState("");
-  const [cargo, setCargo] = useState("Desarrollador");
-  const [tokens, setToken] = useState(
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJ6MzIiLCJpYXQiOjE3MTc1OTc3MjIsImV4cCI6MTcxNzYwODUyMn0.v5iqpiWq7N1E0iOdPspxJefUolZiOi_lT1P2HnpgPsQ"
-  );
+  const [cargo, setCargo] = useState("");
+  const [tokens, setToken] = useState("");
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
