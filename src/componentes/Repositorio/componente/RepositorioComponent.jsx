@@ -38,6 +38,13 @@ const RepoPrincipalComponent = () => {
     }
   };
 
+  const tipoDocumentos = {
+    1: "Oficio",
+    2: "Resolución",
+    3: "Memorando",
+    4: "Informe",
+  };
+
   return (
     <div className="w-full h-full pb-12 pt-8 px-20 bg-gray-50">
       <div className="flex justify-between">
@@ -62,9 +69,11 @@ const RepoPrincipalComponent = () => {
         <div className="grid grid-cols-3 gap-5 w-full">
           {repoData.map((doc) => (
             <div key={doc.id_doc} className="shadow bg-white rounded-md p-4">
-              <h4 className="font-semibold text-gray-800">{doc.asunto}</h4>
+              <h4 className="font-semibold text-gray-800 truncate max-w-full">{doc.asunto}</h4>
               <ul className="mb-1">
-                <li className="text-gray-600">{doc.id_tip}</li>
+                <li className="text-gray-600">
+                  {tipoDocumentos[doc.id_tip] || "Tipo Desconocido"}
+                </li>
                 <li className="text-gray-600">{doc.num_doc}</li>
               </ul>
               <button className="w-full py-1 bg-orange-500 text-white rounded-md">
