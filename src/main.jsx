@@ -8,6 +8,6 @@ import DocumentoForm from "./componentes/test"
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RepoPrincipal />
+    <LoginComponent />
   </React.StrictMode>
 );

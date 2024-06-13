@@ -5,18 +5,18 @@ export const loginhooks = () => {
   const [id_usu, setId_usu] = useState(0);
   const [pswd, setPwsd] = useState("");
   const [cargo, setCargo] = useState("");
-  const [tokens, setToken] = useState("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJ6MzIiLCJpZF9jYXIiOjMsImlhdCI6MTcxODI5MzA2NSwiZXhwIjoxNzE4MzAzODY1fQ.Va4OWmqQIChR4t3ffEl8E4EOQGonqrv4jsmY1TXPCbE");
+  const [tokens, setToken] = useState("");
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
-    const storediduser = localStorage.getItem("iduser");
-    const storedtoken = localStorage.getItem("tokens");
-    if (storedUser) {
+    const storedIdUser = localStorage.getItem("iduser");
+    const storedToken = localStorage.getItem("tokens");
+    if (storedUser && storedToken && storedIdUser) {
       setUser(storedUser);
-      setToken(storedtoken);
-      setId_usu(storediduser);
+      setToken(storedToken);
+      setId_usu(storedIdUser);
     }
-  }, []);
+  }, [tokens]);
 
   const handleIngresarLogin = async (e) => {
     e.preventDefault();
@@ -39,6 +39,9 @@ export const loginhooks = () => {
       }
 
       const data = await response.json();
+      console.log(data);
+      console.log(tokens);
+
       setUser(data?.username);
       setToken(data?.token);
       setId_usu(data?.id_usu);
@@ -53,24 +56,16 @@ export const loginhooks = () => {
         case 3:
           setCargo("Desarrollador");
           break;
-        case 4:
-          setCargo("");
-          break;
-        case 5:
-          setCargo("");
-          break;
-        case 6:
-          setCargo("");
-          break;
         default:
           setCargo("");
           break;
       }
 
-      localStorage.setItem("user", data?.username || "rz32");
+      localStorage.setItem("user", data?.username);
       localStorage.setItem("tokens", data?.token);
-      localStorage.setItem("iduser", data?.id_usu || 1);
+      localStorage.setItem("iduser", data?.id_usu);
 
+      // Redireccionamiento después de guardar en localStorage
       // window.location.href = "";
     } catch (error) {
       console.error("Error:", error);
