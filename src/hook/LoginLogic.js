@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 
 export const loginhooks = () => {
   const [user, setUser] = useState("");
-  const [id_usu, setId_usu] = useState(null);
+  const [id_usu, setId_usu] = useState(0);
   const [pswd, setPwsd] = useState("");
   const [cargo, setCargo] = useState("");
-  const [tokens, setToken] = useState("");
+  const [tokens, setToken] = useState("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJ6MzIiLCJpZF9jYXIiOjMsImlhdCI6MTcxODI5MzA2NSwiZXhwIjoxNzE4MzAzODY1fQ.Va4OWmqQIChR4t3ffEl8E4EOQGonqrv4jsmY1TXPCbE");
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
