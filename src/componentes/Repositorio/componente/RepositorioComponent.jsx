@@ -10,6 +10,16 @@ const RepoPrincipalComponent = () => {
     totalPages,
     pageSize,
     handlePageChange,
+    asunto,
+    setasunto,
+    num_doc,
+    setnum_doc,
+    niv_acc_min,
+    setniv_acc_min,
+    handleFileChange,
+    id_tip,
+    setid_tip,
+    handleCreateDoc,
   } = repohoks();
 
   const [showModal, setShowModal] = useState(false);
@@ -69,12 +79,17 @@ const RepoPrincipalComponent = () => {
         <div className="grid grid-cols-3 gap-5 w-full">
           {repoData.map((doc) => (
             <div key={doc.id_doc} className="shadow bg-white rounded-md p-4">
-              <h4 className="font-semibold text-gray-800 truncate max-w-full">{doc.asunto}</h4>
+              <h4 className="font-semibold text-gray-800 truncate max-w-full">
+                {doc.asunto}
+              </h4>
               <ul className="mb-1">
                 <li className="text-gray-600">
                   {tipoDocumentos[doc.id_tip] || "Tipo Desconocido"}
                 </li>
                 <li className="text-gray-600">{doc.num_doc}</li>
+                <li className="text-gray-600 truncate max-w-full">
+                  {doc.asunto}
+                </li>
               </ul>
               <button className="w-full py-1 bg-orange-500 text-white rounded-md">
                 Ver
@@ -102,7 +117,20 @@ const RepoPrincipalComponent = () => {
           Siguiente
         </button>
       </div>
-      <DocumentoForm show={showModal} onClose={handleCloseModal} />
+      <DocumentoForm
+        show={showModal}
+        onClose={handleCloseModal}
+        asunto={asunto}
+        setasunto={setasunto}
+        num_doc={num_doc}
+        setnum_doc={setnum_doc}
+        niv_acc_min={niv_acc_min}
+        setniv_acc_min={setniv_acc_min}
+        handleFileChange={handleFileChange}
+        id_tip={id_tip}
+        setid_tip={setid_tip}
+        handleCreateDoc={handleCreateDoc}
+      />
     </div>
   );
 };
