@@ -3,7 +3,7 @@ import { useUser } from "./store/userProvider"; // Asegúrate de que la ruta sea
 
 export const repohoks = (handleCloseModal) => {
   const {
-    state: { tokens, id_usu },
+    state: { tokens, id_usu, cargo },
   } = useUser(); // Obtener tokens e id_usu desde el contexto del usuario
 
   const [id_doc, setid_doc] = useState("");
@@ -119,5 +119,6 @@ export const repohoks = (handleCloseModal) => {
     pageSize,
     totalDocs,
     handlePageChange,
+    cargo,
   };
 };

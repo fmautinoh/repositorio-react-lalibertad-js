@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DocumentoForm from "../../test";
 import { repohoks } from "../../../hook/RepositorioLogic";
-
+import { PencilIcon, TrashIcon, EyeIcon } from "@heroicons/react/24/solid";
 const RepoPrincipalComponent = () => {
   const [showModal, setShowModal] = useState(false);
   const handleOpenModal = () => {
@@ -28,6 +28,7 @@ const RepoPrincipalComponent = () => {
     id_tip,
     setIdTip,
     handleCreateDoc,
+    cargo,
   } = repohoks(handleCloseModal);
 
   useEffect(() => {
@@ -76,9 +77,18 @@ const RepoPrincipalComponent = () => {
       <div className="w-full h-full flex justify-center items-start py-4">
         <div className="grid grid-cols-3 gap-5 w-full">
           {repoData.map((doc) => (
-            <div key={doc.id_doc} className="shadow bg-white rounded-md p-4">
+            <div
+              key={doc.id_doc}
+              className="shadow bg-white rounded-md p-4 relative"
+            >
+              <div className="absolute top-2 right-2 flex items-center justify-center">
+                <PencilIcon className="h-5 w-5 text-gray-500 cursor-pointer" />
+                {cargo === "Sub Director" && (
+                  <TrashIcon className="h-5 w-5 text-gray-500 cursor-pointer ml-2" />
+                )}
+              </div>
               <h4 className="font-semibold text-gray-800 truncate max-w-full">
-                {doc.asunto}
+                {tipoDocumentos[doc.id_tip]} - {doc.num_doc}
               </h4>
               <ul className="mb-1">
                 <li className="text-gray-600">
@@ -89,7 +99,8 @@ const RepoPrincipalComponent = () => {
                   {doc.asunto}
                 </li>
               </ul>
-              <button className="w-full py-1 bg-orange-500 text-white rounded-md">
+              <button className="w-full py-1 bg-orange-500 text-white rounded-md flex items-center justify-center">
+                <EyeIcon className="h-5 w-5 mr-2" />
                 Ver
               </button>
             </div>
