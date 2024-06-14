@@ -2,7 +2,9 @@ import { useState } from "react";
 import { useUser } from "./store/userProvider"; // Asegúrate de que la ruta sea correcta
 
 export const repohoks = () => {
-  const { state: { tokens, id_usu } } = useUser(); // Obtener tokens e id_usu desde el contexto del usuario
+  const {
+    state: { tokens, id_usu },
+  } = useUser(); // Obtener tokens e id_usu desde el contexto del usuario
 
   const [id_doc, setid_doc] = useState("");
   const [asunto, setAsunto] = useState("");
@@ -30,6 +32,10 @@ export const repohoks = () => {
     formData.append("pathDoc", pathDoc);
     formData.append("id_tip", id_tip);
     formData.append("id_usu", id_usu);
+    /*
+    for (let pair of formData.entries()) {
+      console.log(pair[0], pair[1]);
+    }*/
 
     try {
       const response = await fetch("http://localhost:3001/repositorio", {

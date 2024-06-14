@@ -1,11 +1,20 @@
-import React, { createContext, useContext, useReducer } from "react";
-import { initialState, userReducer } from "./userReducer";
 
-// Crear el contexto
+
+import React, { createContext, useContext, useReducer } from "react";
+import userReducer from "./userReducer";
+
 const UserContext = createContext();
 
-// Crear un proveedor del contexto
-export const UserProvider = ({ children }) => {
+const initialState = {
+  user: localStorage.getItem("user") || "",
+  id_usu: parseInt(localStorage.getItem("id_usu")) || 0,
+  pswd: localStorage.getItem("pswd") || "",
+  cargo: localStorage.getItem("cargo") || "",
+  tokens: localStorage.getItem("tokens") || "",
+  error: localStorage.getItem("error") || null,
+};
+
+const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(userReducer, initialState);
 
   return (
@@ -15,5 +24,6 @@ export const UserProvider = ({ children }) => {
   );
 };
 
-// Hook para usar el contexto
-export const useUser = () => useContext(UserContext);
+const useUser = () => useContext(UserContext);
+
+export { UserProvider, useUser };

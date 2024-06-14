@@ -4,14 +4,14 @@ const DocumentoForm = ({
   show,
   onClose,
   asunto,
-  setasunto,
+  setAsunto, // Corregido
   num_doc,
-  setnum_doc,
+  setNumDoc, // Corregido
   niv_acc_min,
-  setniv_acc_min,
+  setNivAccMin, // Corregido
   handleFileChange,
   id_tip,
-  setid_tip,
+  setIdTip, // Corregido
   handleCreateDoc,
 }) => {
   if (!show) {
@@ -31,7 +31,7 @@ const DocumentoForm = ({
               className="border px-2 py-1 rounded"
               type="text"
               value={asunto}
-              onChange={(e) => setasunto(e.target.value)}
+              onChange={(e) => setAsunto(e.target.value)} // Corregido
             />
           </div>
           <div className="flex flex-col">
@@ -40,7 +40,7 @@ const DocumentoForm = ({
               className="border px-2 py-1 rounded"
               type="text"
               value={num_doc}
-              onChange={(e) => setnum_doc(e.target.value)}
+              onChange={(e) => setNumDoc(e.target.value)} // Corregido
             />
           </div>
           <div className="flex flex-col">
@@ -49,7 +49,7 @@ const DocumentoForm = ({
               className="border px-2 py-1 rounded"
               type="text"
               value={niv_acc_min}
-              onChange={(e) => setniv_acc_min(e.target.value)}
+              onChange={(e) => setNivAccMin(e.target.value)} // Corregido
             />
           </div>
           <div className="flex flex-col">
@@ -58,13 +58,13 @@ const DocumentoForm = ({
               className="border px-2 py-1 rounded"
               type="text"
               value={id_tip}
-              onChange={(e) => setid_tip(e.target.value)}
+              onChange={(e) => setIdTip(e.target.value)} // Corregido
             />
           </div>
           <div className="flex flex-col">
             <label>Archivo:</label>
             <input
-              className="border pe-2 bg-gray-50 rounded"
+              className="border px-2 py-1 rounded"
               type="file"
               onChange={handleFileChange}
             />
