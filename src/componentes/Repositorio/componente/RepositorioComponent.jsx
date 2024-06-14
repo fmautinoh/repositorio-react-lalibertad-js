@@ -3,6 +3,14 @@ import DocumentoForm from "../../test";
 import { repohoks } from "../../../hook/RepositorioLogic";
 
 const RepoPrincipalComponent = () => {
+  const [showModal, setShowModal] = useState(false);
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
   const {
     GetRepo,
     repoData,
@@ -11,30 +19,20 @@ const RepoPrincipalComponent = () => {
     pageSize,
     handlePageChange,
     asunto,
-    setAsunto, // Corregido
+    setAsunto,
     num_doc,
-    setNumDoc, // Corregido
+    setNumDoc,
     niv_acc_min,
-    setNivAccMin, // Corregido
+    setNivAccMin,
     handleFileChange,
     id_tip,
-    setIdTip, // Corregido
+    setIdTip,
     handleCreateDoc,
-  } = repohoks();
-
-  const [showModal, setShowModal] = useState(false);
+  } = repohoks(handleCloseModal);
 
   useEffect(() => {
     GetRepo(currentPage);
   }, [currentPage]);
-
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
 
   const handlePreviousPage = () => {
     if (currentPage > 1) {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useUser } from "./store/userProvider"; // Asegúrate de que la ruta sea correcta
 
-export const repohoks = () => {
+export const repohoks = (handleCloseModal) => {
   const {
     state: { tokens, id_usu },
   } = useUser(); // Obtener tokens e id_usu desde el contexto del usuario
@@ -12,11 +12,11 @@ export const repohoks = () => {
   const [niv_acc_min, setNivAccMin] = useState("");
   const [pathDoc, setPathDoc] = useState(null);
   const [id_tip, setIdTip] = useState("");
-  const [repoData, setRepoData] = useState([]); // Estado para almacenar los datos del repositorio
-  const [currentPage, setCurrentPage] = useState(1); // Estado para la página actual
-  const [totalPages, setTotalPages] = useState(1); // Estado para el total de páginas
-  const [pageSize, setPageSize] = useState(6); // Estado para el tamaño de página
-  const [totalDocs, setTotalDocs] = useState(0); // Estado para el total de documentos
+  const [repoData, setRepoData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [pageSize, setPageSize] = useState(6);
+  const [totalDocs, setTotalDocs] = useState(0);
 
   const handleFileChange = (event) => {
     setPathDoc(event.target.files[0]);
@@ -51,6 +51,8 @@ export const repohoks = () => {
       }
 
       const result = await response.json();
+      await GetRepo(currentPage);
+      handleCloseModal();
       console.log("Document created:", result);
     } catch (error) {
       console.error("Error creating document:", error);
@@ -74,13 +76,12 @@ export const repohoks = () => {
       }
 
       const data = await response.json();
-      setRepoData(data.docs); // Guardar los documentos en el estado
-      setCurrentPage(data.currentPage); // Guardar la página actual en el estado
-      setTotalPages(data.totalPages); // Guardar el total de páginas en el estado
-      setPageSize(data.pageSize); // Guardar el tamaño de página en el estado
-      setTotalDocs(data.totalDocs); // Guardar el total de documentos en el estado
-
-      console.log("Repository data:", data);
+      setRepoData(data.docs);
+      setCurrentPage(data.currentPage);
+      setTotalPages(data.totalPages);
+      setPageSize(data.pageSize);
+      setTotalDocs(data.totalDocs);
+      //console.log("Repository data:", data);
     } catch (error) {
       console.error("Error fetching repository data:", error);
     }
@@ -107,11 +108,11 @@ export const repohoks = () => {
     id_usu,
     handleCreateDoc,
     GetRepo,
-    repoData, // Devolver el estado de los datos del repositorio
-    currentPage, // Devolver la página actual
-    totalPages, // Devolver el total de páginas
-    pageSize, // Devolver el tamaño de página
-    totalDocs, // Devolver el total de documentos
-    handlePageChange, // Devolver la función para cambiar la página
+    repoData,
+    currentPage,
+    totalPages,
+    pageSize,
+    totalDocs,
+    handlePageChange,
   };
 };
