@@ -5,9 +5,10 @@ import LoginComponent from "./componentes/Login/LoginComponent";
 import PrincipalComponent from "./componentes/Principal";
 import RepoPrincipal from "./componentes/Repositorio";
 import DocumentoForm from "./componentes/test"
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <LoginComponent />
-  </React.StrictMode>
+  <BrowserRouter>
+    <PrincipalComponent />
+  </BrowserRouter>
 );

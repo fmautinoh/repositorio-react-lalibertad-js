@@ -1,9 +1,11 @@
 import NavbarComponent from "../Navbar";
+import { Route, Routes,useLocation  } from "react-router-dom";
+import RepoPrincipal from "../../componentes/Repositorio";
+import LoginComponent from "../../componentes/Login/LoginComponent";
 
-const PrincipalComponent = () => {
+const AppInicio = () => {
   return (
     <div className=" sm:w-[100%] sm:h-[150%]">
-      <NavbarComponent />
       <div className="p-6">
         <div className="flex flex-col justify-center items-center  ">
           <div className="py-10 flex flex-col justify-center items-center gap-4 w-full text-center bg-sky-100 shadow rounded-lg">
@@ -25,6 +27,25 @@ const PrincipalComponent = () => {
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+const PrincipalComponent = () => {
+
+  const location = useLocation();
+
+  return (
+    <div className="">
+     {location.pathname !== '/login' && <NavbarComponent />}
+
+      <Routes>
+        <Route path="/" element={<AppInicio />} />
+        <Route path="/repositorio" element={<RepoPrincipal />} />
+        <Route path="/login" element={<LoginComponent />}/>
+        <Route path="*" element={<div>Pagina 404</div>}/>
+      </Routes>
+
     </div>
   );
 };

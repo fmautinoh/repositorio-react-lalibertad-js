@@ -1,10 +1,11 @@
 import { loginhooks } from "../../hook/LoginLogic";
+import { Link } from "react-router-dom";
 
 const Navbarcomponent = () => {
   const { user, cargo } = loginhooks();
 
   return (
-    <nav className="bg-indigo-600 text-white px-20 py-2 flex justify-between items-center">
+    <header className="bg-indigo-600 text-white px-20 py-2 flex justify-between items-center">
       <div className="flex items-center">
         <img
           src="/src/assets/user-interface.png"
@@ -20,20 +21,20 @@ const Navbarcomponent = () => {
           </span>
         </div>
       </div>
-      <div className="flex items-center">
-        <a
-          href="#"
+      <nav className="flex items-center">
+        <Link
+          to="/"
           className="text-lg font-bold hover:bg-indigo-400 hover:rounded py-1 px-4"
         >
           Inicio
-        </a>
-        <button
+        </Link>
+        <Link to='/repositorio'
           className="text-lg font-bold hover:bg-indigo-400 hover:rounded py-1 px-4"
         >
           Repositorio
-        </button>
-      </div>
-    </nav>
+        </Link>
+      </nav>
+    </header>
   );
 };
 
