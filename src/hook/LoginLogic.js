@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 
 export const loginhooks = () => {
   const [user, setUser] = useState("");
@@ -6,6 +7,9 @@ export const loginhooks = () => {
   const [pswd, setPwsd] = useState("");
   const [cargo, setCargo] = useState("");
   const [tokens, setToken] = useState("");
+  
+  const [error, setError] = useState(null); //
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -67,7 +71,9 @@ export const loginhooks = () => {
 
       // Redireccionamiento después de guardar en localStorage
       // window.location.href = "";
+      navigate('/');
     } catch (error) {
+      setError(error.message);
       console.error("Error:", error);
     }
   };
@@ -81,5 +87,6 @@ export const loginhooks = () => {
     cargo,
     tokens,
     id_usu,
+    error
   };
 };
