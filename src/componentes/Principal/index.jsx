@@ -1,5 +1,5 @@
 import NavbarComponent from "../Navbar";
-import { Route, Routes,useLocation  } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import RepoPrincipal from "../../componentes/Repositorio";
 import LoginComponent from "../../componentes/Login/LoginComponent";
 
@@ -9,9 +9,7 @@ const AppInicio = () => {
       <div className="p-6">
         <div className="flex flex-col justify-center items-center  ">
           <div className="py-10 flex flex-col justify-center items-center gap-4 w-full text-center bg-sky-100 shadow rounded-lg">
-            <div
-              className="w-full lg:w-3/4 text-[#0092FC] lg:text-3xl font-bold sm:text-2xl"
-            >
+            <div className="w-full lg:w-3/4 text-[#0092FC] lg:text-3xl font-bold sm:text-2xl">
               INSTITUCIÓN EDUCATIVA EMBLEMÁTICA <br /> “COLEGIO DE LA LIBERTAD”
             </div>
             <img
@@ -19,9 +17,7 @@ const AppInicio = () => {
               src="src/assets/ASD-1.svg"
               alt="Placeholder Image"
             />
-            <div
-              className="w-full lg:w-3/4 text-[#568BDA] lg:text-4xl font-bold sm:text-xl"
-            >
+            <div className="w-full lg:w-3/4 text-[#568BDA] lg:text-4xl font-bold sm:text-xl">
               BIENVENIDO AL REPOSITORIO DE <br /> DOCUMENTOS ADMINISTRATIVOS
             </div>
           </div>
@@ -29,23 +25,13 @@ const AppInicio = () => {
       </div>
     </div>
   );
-}
+};
 
 const PrincipalComponent = () => {
-
-  const location = useLocation();
-
   return (
-    <div className="">
-     {location.pathname !== '/login' && <NavbarComponent />}
-
-      <Routes>
-        <Route path="/" element={<AppInicio />} />
-        <Route path="/repositorio" element={<RepoPrincipal />} />
-        <Route path="/login" element={<LoginComponent />}/>
-        <Route path="*" element={<div>Pagina 404</div>}/>
-      </Routes>
-
+    <div>
+      <NavbarComponent />
+      <AppInicio />
     </div>
   );
 };

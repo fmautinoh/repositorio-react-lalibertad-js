@@ -1,32 +1,17 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useUser } from "./store/userProvider"; // Asegúrate de que la ruta sea correcta
 
-export const loginhooks = () => {
-  const [user, setUser] = useState("");
-  const [id_usu, setId_usu] = useState(0);
-  const [pswd, setPwsd] = useState("");
-  const [cargo, setCargo] = useState("");
-  const [tokens, setToken] = useState("");
-  
-  const [error, setError] = useState(null); //
-  const navigate = useNavigate(); 
+export const useLogin = () => {
+  const { state, dispatch } = useUser();
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    const storedIdUser = localStorage.getItem("iduser");
-    const storedToken = localStorage.getItem("tokens");
-    if (storedUser && storedToken && storedIdUser) {
-      setUser(storedUser);
-      setToken(storedToken);
-      setId_usu(storedIdUser);
-    }
-  }, [tokens]);
+  const navigate = useNavigate();
 
   const handleIngresarLogin = async (e) => {
     e.preventDefault();
     const body = {
-      username: user,
-      pasword: pswd,
+      username: state.user,
+      pasword: state.pswd,
     };
 
     try {
@@ -44,49 +29,45 @@ export const loginhooks = () => {
 
       const data = await response.json();
       console.log(data);
-      console.log(tokens);
+      console.log(state.tokens);
 
-      setUser(data?.username);
-      setToken(data?.token);
-      setId_usu(data?.id_usu);
+      dispatch({ type: "SET_USER", payload: data?.username });
+      dispatch({ type: "SET_TOKEN", payload: data?.token });
+      dispatch({ type: "SET_ID_USU", payload: data?.id_usu });
 
+      let cargo = "";
       switch (data?.cargo) {
         case 1:
-          setCargo("Director");
+          cargo = "Director";
           break;
         case 2:
-          setCargo("Sub Director de Primaria");
+          cargo = "Sub Director de Primaria";
           break;
         case 3:
-          setCargo("Desarrollador");
+          cargo = "Desarrollador";
           break;
         default:
-          setCargo("");
+          cargo = "";
           break;
       }
+      dispatch({ type: "SET_CARGO", payload: cargo });
 
-      localStorage.setItem("user", data?.username);
-      localStorage.setItem("tokens", data?.token);
-      localStorage.setItem("iduser", data?.id_usu);
-
-      // Redireccionamiento después de guardar en localStorage
-      // window.location.href = "";
-      navigate('/');
+      navigate("/principal");
     } catch (error) {
-      setError(error.message);
+      dispatch({ type: "SET_ERROR", payload: error.message });
       console.error("Error:", error);
     }
   };
 
   return {
-    user,
-    setUser,
-    pswd,
-    setPwsd,
+    user: state.user,
+    setUser: (value) => dispatch({ type: "SET_USER", payload: value }),
+    pswd: state.pswd,
+    setPswd: (value) => dispatch({ type: "SET_PSWD", payload: value }),
     handleIngresarLogin,
-    cargo,
-    tokens,
-    id_usu,
-    error
+    cargo: state.cargo,
+    tokens: state.tokens,
+    id_usu: state.id_usu,
+    error: state.error,
   };
 };

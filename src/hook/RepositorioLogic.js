@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { loginhooks } from "../hook/LoginLogic";
+import { useUser } from "./store/userProvider"; // Asegúrate de que la ruta sea correcta
 
 export const repohoks = () => {
-  const { tokens, id_usu } = loginhooks(); // Obtener tokens e id_usu desde loginhooks
+  const { state: { tokens, id_usu } } = useUser(); // Obtener tokens e id_usu desde el contexto del usuario
 
   const [id_doc, setid_doc] = useState("");
-  const [asunto, setasunto] = useState("");
-  const [num_doc, setnum_doc] = useState("");
-  const [niv_acc_min, setniv_acc_min] = useState("");
-  const [pathDoc, setpathDoc] = useState(null);
-  const [id_tip, setid_tip] = useState("");
+  const [asunto, setAsunto] = useState("");
+  const [num_doc, setNumDoc] = useState("");
+  const [niv_acc_min, setNivAccMin] = useState("");
+  const [pathDoc, setPathDoc] = useState(null);
+  const [id_tip, setIdTip] = useState("");
   const [repoData, setRepoData] = useState([]); // Estado para almacenar los datos del repositorio
   const [currentPage, setCurrentPage] = useState(1); // Estado para la página actual
   const [totalPages, setTotalPages] = useState(1); // Estado para el total de páginas
@@ -17,7 +17,7 @@ export const repohoks = () => {
   const [totalDocs, setTotalDocs] = useState(0); // Estado para el total de documentos
 
   const handleFileChange = (event) => {
-    setpathDoc(event.target.files[0]);
+    setPathDoc(event.target.files[0]);
   };
 
   const handleCreateDoc = async (e) => {
@@ -89,15 +89,15 @@ export const repohoks = () => {
     id_doc,
     setid_doc,
     asunto,
-    setasunto,
+    setAsunto,
     num_doc,
-    setnum_doc,
+    setNumDoc,
     niv_acc_min,
-    setniv_acc_min,
+    setNivAccMin,
     pathDoc,
     handleFileChange,
     id_tip,
-    setid_tip,
+    setIdTip,
     id_usu,
     handleCreateDoc,
     GetRepo,

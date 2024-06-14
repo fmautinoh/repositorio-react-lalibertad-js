@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DocumentoForm from "../../test";
 import { repohoks } from "../../../hook/RepositorioLogic";
+import { useUser } from "../../../hook/store/userProvider"; // Asegúrate de que la ruta sea correcta
 
 const RepoPrincipalComponent = () => {
   const {
@@ -11,16 +12,18 @@ const RepoPrincipalComponent = () => {
     pageSize,
     handlePageChange,
     asunto,
-    setasunto,
+    setAsunto,
     num_doc,
-    setnum_doc,
+    setNumDoc,
     niv_acc_min,
-    setniv_acc_min,
+    setNivAccMin,
     handleFileChange,
     id_tip,
-    setid_tip,
+    setIdTip,
     handleCreateDoc,
   } = repohoks();
+
+  const { state: userState } = useUser(); // Obteniendo el estado del usuario desde el contexto
 
   const [showModal, setShowModal] = useState(false);
 
@@ -121,14 +124,14 @@ const RepoPrincipalComponent = () => {
         show={showModal}
         onClose={handleCloseModal}
         asunto={asunto}
-        setasunto={setasunto}
+        setAsunto={setAsunto}
         num_doc={num_doc}
-        setnum_doc={setnum_doc}
+        setNumDoc={setNumDoc}
         niv_acc_min={niv_acc_min}
-        setniv_acc_min={setniv_acc_min}
+        setNivAccMin={setNivAccMin}
         handleFileChange={handleFileChange}
         id_tip={id_tip}
-        setid_tip={setid_tip}
+        setIdTip={setIdTip}
         handleCreateDoc={handleCreateDoc}
       />
     </div>
