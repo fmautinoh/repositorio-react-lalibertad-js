@@ -53,6 +53,11 @@ export const repohoks = (handleCloseModal) => {
       const result = await response.json();
       await GetRepo(currentPage);
       handleCloseModal();
+      setNivAccMin("");
+      setNumDoc("");
+      setAsunto("");
+      setIdTip("");
+
       console.log("Document created:", result);
     } catch (error) {
       console.error("Error creating document:", error);

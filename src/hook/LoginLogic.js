@@ -38,13 +38,16 @@ export const useLogin = () => {
       let cargo = "";
       switch (data?.cargo) {
         case 1:
-          cargo = "Director";
+          cargo = "SIAGIE";
           break;
         case 2:
-          cargo = "Sub Director de Primaria";
+          cargo = "Secretaría";
           break;
         case 3:
-          cargo = "Desarrollador";
+          cargo = "Sub Director";
+          break;
+        case 4:
+          cargo = "Director";
           break;
         default:
           cargo = "";
