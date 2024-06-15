@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useUser } from "./store/userProvider"; // Asegúrate de que la ruta sea correcta
+import { useUser } from "./store/userProvider";
 
 export const repohoks = (handleCloseModal) => {
   const {
     state: { tokens, id_usu, cargo },
-  } = useUser(); // Obtener tokens e id_usu desde el contexto del usuario
+  } = useUser();
 
   const [id_doc, setid_doc] = useState("");
   const [asunto, setAsunto] = useState("");
