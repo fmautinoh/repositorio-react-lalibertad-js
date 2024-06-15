@@ -104,7 +104,7 @@ const RepoPrincipalComponent = () => {
                   {doc.asunto}
                 </li>
               </ul>
-              <button className="w-full py-1 bg-orange-500 text-white rounded-md flex items-center justify-center" onClick={verFile(doc.id_doc)}>
+              <button className="w-full py-1 bg-orange-500 text-white rounded-md flex items-center justify-center" onClick={() => verFile(doc.id_doc, doc.asunto, tipoDocumentos[doc.id_tip], doc.num_doc)}>
                 <EyeIcon className="h-5 w-5 mr-2" />
                 Ver
               </button>
