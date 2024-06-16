@@ -97,6 +97,24 @@ export const repohoks = (handleCloseModal) => {
     GetRepo(newPage);
   };
 
+  const UpdateRepo = async (dataUpdate, iddoc) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/repositorio/${iddoc}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${tokens}`,
+          },
+          body: dataUpdate,
+        }
+      );
+      await GetRepo(currentPage);
+    } catch (error) {
+      console.error("Error fetching repository data:", error);
+    }
+  };
+
   return {
     id_doc,
     setid_doc,
@@ -120,5 +138,6 @@ export const repohoks = (handleCloseModal) => {
     totalDocs,
     handlePageChange,
     cargo,
+    UpdateRepo,
   };
 };

@@ -31,7 +31,6 @@ export const filehooks = () => {
         fileData,
       };
       setData(datos);
-      //console.log("data:", datos);
     } catch (error) {
       console.error("Error fetching repository data:", error);
     }
