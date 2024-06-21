@@ -1,13 +1,13 @@
 import { useUser } from "./store/userProvider";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export const filehooks = () => {
   const {
     state: { tokens },
   } = useUser();
-  const [Data, setData] = useState([]);
+  const [Data, setData] = useState(null);
 
-  const verFile = async (idfile, asunto, tipodoc, numdoc) => {
+  const verFile = async (idfile) => {
     try {
       const response = await fetch(
         `http://localhost:3001/repositorio/documento/file/${idfile}`,
@@ -24,22 +24,12 @@ export const filehooks = () => {
       }
 
       const fileData = await response.blob();
-      const datos = {
-        asunto,
-        tipodoc,
-        numdoc,
-        fileData,
-      };
-      setData(datos);
+      setData(fileData);
     } catch (error) {
       console.error("Error fetching repository data:", error);
     }
   };
-  /*
-  useEffect(() => {
-    console.log("Updated Data:", Data);
-  }, [Data]);
-*/
+
   return {
     verFile,
     Data,
