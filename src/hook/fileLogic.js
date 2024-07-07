@@ -6,7 +6,7 @@ export const filehooks = () => {
     state: { tokens },
   } = useUser();
   const [Data, setData] = useState(null);
-
+/*
   const verFile = async (idfile) => {
     try {
       const response = await fetch(
@@ -33,5 +33,6 @@ export const filehooks = () => {
   return {
     verFile,
     Data,
-  };
+  };*/
+  
 };

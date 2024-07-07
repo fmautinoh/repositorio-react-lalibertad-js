@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import { useUser } from "./store/userProvider";
+import { useState } from "react";
+import { useUser } from "./store/userProvider"; // Asegúrate de que la ruta sea correcta
 
 export const repohoks = (handleCloseModal) => {
   const {
     state: { tokens, id_usu, cargo },
-  } = useUser();
+  } = useUser(); // Obtener tokens e id_usu desde el contexto del usuario
 
   const [id_doc, setid_doc] = useState("");
   const [asunto, setAsunto] = useState("");
@@ -33,6 +33,7 @@ export const repohoks = (handleCloseModal) => {
     formData.append("id_tip", id_tip);
     formData.append("id_usu", id_usu);
 
+
     try {
       const response = await fetch("http://localhost:3001/repositorio", {
         method: "POST",
@@ -47,6 +48,7 @@ export const repohoks = (handleCloseModal) => {
       }
 
       const result = await response.json();
+      await GetRepo(currentPage);
       handleCloseModal();
       setNivAccMin("");
       setNumDoc("");
@@ -54,7 +56,6 @@ export const repohoks = (handleCloseModal) => {
       setIdTip("");
 
       console.log("Document created:", result);
-      await GetRepo(currentPage); // Actualizar la lista después de crear el documento
     } catch (error) {
       console.error("Error creating document:", error);
     }
@@ -82,6 +83,7 @@ export const repohoks = (handleCloseModal) => {
       setTotalPages(data.totalPages);
       setPageSize(data.pageSize);
       setTotalDocs(data.totalDocs);
+      //console.log("Repository data:", data);
     } catch (error) {
       console.error("Error fetching repository data:", error);
     }
@@ -89,30 +91,8 @@ export const repohoks = (handleCloseModal) => {
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
-    // No necesitas llamar GetRepo aquí porque ya se llama en useEffect
+    GetRepo(newPage);
   };
-
-  const UpdateRepo = async (dataUpdate, iddoc) => {
-    try {
-      const response = await fetch(
-        `http://localhost:3001/repositorio/${iddoc}`,
-        {
-          method: "PUT",
-          headers: {
-            Authorization: `Bearer ${tokens}`,
-          },
-          body: dataUpdate,
-        }
-      );
-      await GetRepo(currentPage); // Actualizar la lista después de actualizar el repositorio
-    } catch (error) {
-      console.error("Error updating repository data:", error);
-    }
-  };
-
-  useEffect(() => {
-    GetRepo(currentPage); // Llamar a GetRepo cuando se monta el componente o currentPage cambia
-  }, [currentPage]); // Dependencia de useEffect
 
   return {
     id_doc,
@@ -137,6 +117,5 @@ export const repohoks = (handleCloseModal) => {
     totalDocs,
     handlePageChange,
     cargo,
-    UpdateRepo,
   };
 };

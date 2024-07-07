@@ -1,48 +1,39 @@
 import React, { useState, useEffect } from "react";
 import DocumentoForm from "../../test";
-import { PencilIcon, TrashIcon, EyeIcon } from "@heroicons/react/24/solid";
 import { repohoks } from "../../../hook/RepositorioLogic";
-import { filehooks } from "../../../hook/fileLogic";
-import FileModal from "../../ModalFile";
-
+import { PencilIcon, TrashIcon, EyeIcon } from "@heroicons/react/24/solid";
 const RepoPrincipalComponent = () => {
   const [showModal, setShowModal] = useState(false);
-  const [showModalfile, setShowModalfile] = useState(false); // Definir el estado aquí
-  const [datafile, setDatafile] = useState({});
-  const [asunto, setAsunto] = useState("");
-  const [num_doc, setNumDoc] = useState("");
-  const [niv_acc_min, setNivAccMin] = useState("");
-  const [id_tip, setIdTip] = useState("");
-  const [cargo, setCargo] = useState("");
-  const [fileModal, setFileModal] = useState(null);
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
 
   const handleCloseModal = () => {
     setShowModal(false);
   };
-
-  const { verFile, Data } = filehooks();
-
   const {
     GetRepo,
     repoData,
     currentPage,
     totalPages,
+    pageSize,
     handlePageChange,
+    asunto,
+    setAsunto,
+    num_doc,
+    setNumDoc,
+    niv_acc_min,
+    setNivAccMin,
     handleFileChange,
+    id_tip,
+    setIdTip,
     handleCreateDoc,
+    cargo,
   } = repohoks(handleCloseModal);
 
   useEffect(() => {
     GetRepo(currentPage);
-  }, [GetRepo, currentPage]);
-
-  useEffect(() => {
-    if (showModalfile && datafile.idfile) {
-      verFile(datafile.idfile).then(() => {
-        setFileModal(Data);
-      });
-    }
-  }, [showModalfile, datafile, verFile, Data]);
+  }, [currentPage]);
 
   const handlePreviousPage = () => {
     if (currentPage > 1) {
@@ -61,15 +52,6 @@ const RepoPrincipalComponent = () => {
     2: "Resolución",
     3: "Memorando",
     4: "Informe",
-  };
-
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
-
-  const handleVerFile = (idfile, asunto, tipodoc, numdoc) => {
-    setDatafile({ idfile, asunto, tipodoc, numdoc });
-    setShowModalfile(true);
   };
 
   return (
@@ -117,18 +99,7 @@ const RepoPrincipalComponent = () => {
                   {doc.asunto}
                 </li>
               </ul>
-              <button
-                className="w-full py-1 bg-orange-500 text-white rounded-md flex items-center justify-center"
-                onClick={(e) =>
-                  handleVerFile(
-                    doc.id_doc,
-                    doc.asunto,
-                    tipoDocumentos[doc.id_tip],
-                    doc.num_doc,
-                    e
-                  )
-                }
-              >
+              <button className="w-full py-1 bg-orange-500 text-white rounded-md flex items-center justify-center">
                 <EyeIcon className="h-5 w-5 mr-2" />
                 Ver
               </button>
@@ -168,15 +139,6 @@ const RepoPrincipalComponent = () => {
         id_tip={id_tip}
         setIdTip={setIdTip}
         handleCreateDoc={handleCreateDoc}
-      />
-      <FileModal
-        idfile={datafile.idfile}
-        asunto={datafile.asunto}
-        tipodoc={datafile.tipodoc}
-        numdoc={datafile.numdoc}
-        file={fileModal}
-        openModalProp={showModalfile}
-        onClose={() => setShowModalfile(false)}
       />
     </div>
   );
