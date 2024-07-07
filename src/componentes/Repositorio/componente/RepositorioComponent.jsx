@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import DocumentoForm from "../../test";
-import { repohoks } from "../../../hook/RepositorioLogic";
 import { PencilIcon, TrashIcon, EyeIcon } from "@heroicons/react/24/solid";
+import { repohoks } from "../../../hook/RepositorioLogic";
 import { filehooks } from "../../../hook/fileLogic";
 import FileModal from "../../ModalFile";
 
 const RepoPrincipalComponent = () => {
   const [showModal, setShowModal] = useState(false);
-  const [showModalfile, setShowModalfile] = useState(false);
+  const [showModalfile, setShowModalfile] = useState(false); // Definir el estado aquí
   const [datafile, setDatafile] = useState({});
   const [asunto, setAsunto] = useState("");
   const [num_doc, setNumDoc] = useState("");
@@ -119,12 +119,13 @@ const RepoPrincipalComponent = () => {
               </ul>
               <button
                 className="w-full py-1 bg-orange-500 text-white rounded-md flex items-center justify-center"
-                onClick={() =>
+                onClick={(e) =>
                   handleVerFile(
                     doc.id_doc,
                     doc.asunto,
                     tipoDocumentos[doc.id_tip],
-                    doc.num_doc
+                    doc.num_doc,
+                    e
                   )
                 }
               >
