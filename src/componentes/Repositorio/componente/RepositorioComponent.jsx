@@ -28,6 +28,7 @@ const RepoPrincipalComponent = () => {
     id_tip,
     setIdTip,
     handleCreateDoc,
+    handleDeleteDoc,
     cargo,
   } = repohoks(handleCloseModal);
 
@@ -83,8 +84,8 @@ const RepoPrincipalComponent = () => {
             >
               <div className="absolute top-2 right-2 flex items-center justify-center">
                 <PencilIcon className="h-5 w-5 text-gray-500 cursor-pointer" />
-                {cargo === "Sub Director" && (
-                  <TrashIcon className="h-5 w-5 text-gray-500 cursor-pointer ml-2" />
+                {cargo === "Director" && (
+                  <TrashIcon className="h-5 w-5 text-gray-500 cursor-pointer ml-2" onClick={() =>handleDeleteDoc(doc.id_doc)} />
                 )}
               </div>
               <h4 className="font-semibold text-gray-800 truncate max-w-full">

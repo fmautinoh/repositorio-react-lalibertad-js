@@ -96,7 +96,16 @@ export const repohoks = (handleCloseModal) => {
 
   const handleDeleteDoc = async (idDoc) =>{
     try {
-      
+      const response = await fetch(
+        `http://localhost:3001/repositorio/documento/${idDoc}`,
+        {
+          method: "Delete",
+          headers: {
+            Authorization: `Bearer ${tokens}`,
+          },
+        }
+      ); 
+      await GetRepo(currentPage);
     } catch (error) {
       console.error("Error deleting repository data:", error);
     }
@@ -125,5 +134,6 @@ export const repohoks = (handleCloseModal) => {
     totalDocs,
     handlePageChange,
     cargo,
+    handleDeleteDoc,
   };
 };
