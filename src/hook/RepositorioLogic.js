@@ -94,6 +94,14 @@ export const repohoks = (handleCloseModal) => {
     GetRepo(newPage);
   };
 
+  const handleDeleteDoc = async (idDoc) =>{
+    try {
+      
+    } catch (error) {
+      console.error("Error deleting repository data:", error);
+    }
+  }
+
   return {
     id_doc,
     setid_doc,
