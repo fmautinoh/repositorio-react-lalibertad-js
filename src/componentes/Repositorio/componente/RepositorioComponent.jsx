@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import DocumentoForm from "../../test";
 import { repohoks } from "../../../hook/RepositorioLogic";
 import { PencilIcon, TrashIcon, EyeIcon } from "@heroicons/react/24/solid";
+
 const RepoPrincipalComponent = () => {
   const [showModal, setShowModal] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const handleOpenModal = () => {
     setShowModal(true);
   };
@@ -55,6 +57,13 @@ const RepoPrincipalComponent = () => {
     4: "Informe",
   };
 
+  // Filtrar los datos en función del término de búsqueda
+  const filteredData = repoData.filter(doc =>
+    doc.asunto.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    doc.num_doc.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    tipoDocumentos[doc.id_tip].toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="w-full h-full pb-12 pt-8 px-20 bg-gray-50">
       <div className="flex justify-between">
@@ -63,10 +72,9 @@ const RepoPrincipalComponent = () => {
             type="text"
             className="px-4 py-2 rounded shadow border"
             placeholder="Buscar"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <button className="px-8 py-2 rounded-md bg-black text-white hover:bg-gray-800">
-            Buscar
-          </button>
         </div>
         <button
           className="px-8 py-2 rounded-md bg-green-500 text-white hover:bg-green-600"
@@ -77,7 +85,7 @@ const RepoPrincipalComponent = () => {
       </div>
       <div className="w-full h-full flex justify-center items-start py-4">
         <div className="grid grid-cols-3 gap-5 w-full">
-          {repoData.map((doc) => (
+          {filteredData.map((doc) => (
             <div
               key={doc.id_doc}
               className="shadow bg-white rounded-md p-4 relative"
@@ -85,7 +93,10 @@ const RepoPrincipalComponent = () => {
               <div className="absolute top-2 right-2 flex items-center justify-center">
                 <PencilIcon className="h-5 w-5 text-gray-500 cursor-pointer" />
                 {cargo === "Director" && (
-                  <TrashIcon className="h-5 w-5 text-gray-500 cursor-pointer ml-2" onClick={() =>handleDeleteDoc(doc.id_doc)} />
+                  <TrashIcon
+                    className="h-5 w-5 text-gray-500 cursor-pointer ml-2"
+                    onClick={() => handleDeleteDoc(doc.id_doc)}
+                  />
                 )}
               </div>
               <h4 className="font-semibold text-gray-800 truncate max-w-full">
