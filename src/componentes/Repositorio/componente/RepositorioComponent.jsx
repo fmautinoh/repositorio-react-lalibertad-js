@@ -2,12 +2,16 @@ import React, { useState, useEffect } from "react";
 import DocumentoForm from "../../test";
 import { repohoks } from "../../../hook/RepositorioLogic";
 import { PencilIcon, TrashIcon, EyeIcon } from "@heroicons/react/24/solid";
+//import FileModal from "./../../ModalFile";
+import useFileLoader from "./../../../hook/fileLogic";
 
 const RepoPrincipalComponent = () => {
   const [showModal, setShowModal] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [selectedDoc, setSelectedDoc] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [viewFileModal, setViewFileModal] = useState(false);
+  const [fileId, setFileId] = useState(null);
 
   const handleOpenModal = () => {
     setShowModal(true);
@@ -37,9 +41,11 @@ const RepoPrincipalComponent = () => {
     setIdTip,
     handleCreateDoc,
     handleDeleteDoc,
-    handleUpdateDoc, // Asegúrate de tener una función para actualizar documentos
+    handleUpdateDoc,
     cargo,
   } = repohoks(handleCloseModal);
+
+  const { verFile } = useFileLoader();
 
   useEffect(() => {
     GetRepo(currentPage);
@@ -114,7 +120,7 @@ const RepoPrincipalComponent = () => {
                   className="h-5 w-5 text-gray-500 cursor-pointer"
                   onClick={() => handleEditDoc(doc)}
                 />
-                {cargo === "Director" && (
+                {cargo === "Director" || "Desarrollador" && (
                   <TrashIcon
                     className="h-5 w-5 text-gray-500 cursor-pointer ml-2"
                     onClick={() => handleDeleteDoc(doc.id_doc)}
@@ -133,7 +139,10 @@ const RepoPrincipalComponent = () => {
                   {doc.asunto}
                 </li>
               </ul>
-              <button className="w-full py-1 bg-orange-500 text-white rounded-md flex items-center justify-center">
+              <button
+                className="w-full py-1 bg-orange-500 text-white rounded-md flex items-center justify-center"
+                onClick={() => verFile(doc.id_doc)}
+              >
                 <EyeIcon className="h-5 w-5 mr-2" />
                 Ver
               </button>
@@ -172,7 +181,7 @@ const RepoPrincipalComponent = () => {
         handleFileChange={handleFileChange}
         id_tip={id_tip}
         setIdTip={setIdTip}
-        handleCreateDoc={handleCreateDoc} // Debes asegurarte de pasar handleCreateDoc aquí
+        handleCreateDoc={handleCreateDoc}
         handleUpdateDoc={handleUpdateDoc}
         selectedDoc={selectedDoc}
       />

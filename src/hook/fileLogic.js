@@ -1,18 +1,17 @@
 import { useState } from "react";
 import { useUser } from "./store/userProvider";
 
-export const filehooks = () => {
+const useFileLoader = () => {
   const {
     state: { tokens },
   } = useUser();
-  const [Data, setData] = useState(null);
-/*
+  const [fileUrl, setFileUrl] = useState(null);
+
   const verFile = async (idfile) => {
     try {
       const response = await fetch(
         `http://localhost:3001/repositorio/documento/file/${idfile}`,
         {
-          method: "GET",
           headers: {
             Authorization: `Bearer ${tokens}`,
           },
@@ -20,19 +19,19 @@ export const filehooks = () => {
       );
 
       if (!response.ok) {
-        throw new Error("Failed to fetch repository data");
+        throw new Error("Failed to fetch file data");
       }
 
       const fileData = await response.blob();
-      setData(fileData);
+      const url = URL.createObjectURL(fileData);
+      setFileUrl(url);
+      window.open(url, "_blank");
     } catch (error) {
-      console.error("Error fetching repository data:", error);
+      console.error("Error fetching file data:", error);
     }
   };
 
-  return {
-    verFile,
-    Data,
-  };*/
-  
+  return { verFile, fileUrl };
 };
+
+export default useFileLoader;

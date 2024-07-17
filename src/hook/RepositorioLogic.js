@@ -22,8 +22,8 @@ export const repohoks = (handleCloseModal) => {
     setPathDoc(event.target.files[0]);
   };
 
-  const handleCreateDoc = async (e) => {
-    e.preventDefault();
+  const handleCreateDoc = async () => {
+
 
     const formData = new FormData();
     formData.append("asunto", asunto);
