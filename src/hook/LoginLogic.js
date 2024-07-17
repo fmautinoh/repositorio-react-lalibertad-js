@@ -44,7 +44,7 @@ export const useLogin = () => {
           cargo = "Secretaría";
           break;
         case 3:
-          cargo = "Sub Director";
+          cargo = "Desarrollador";
           break;
         case 4:
           cargo = "Director";

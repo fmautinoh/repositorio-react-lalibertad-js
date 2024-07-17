@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useUser } from "./store/userProvider"; // Asegúrate de que la ruta sea correcta
+import { useUser } from "./store/userProvider";
 
 export const repohoks = (handleCloseModal) => {
   const {
     state: { tokens, id_usu, cargo },
-  } = useUser(); // Obtener tokens e id_usu desde el contexto del usuario
+  } = useUser();
 
   const [id_doc, setid_doc] = useState("");
   const [asunto, setAsunto] = useState("");
@@ -33,7 +33,6 @@ export const repohoks = (handleCloseModal) => {
     formData.append("id_tip", id_tip);
     formData.append("id_usu", id_usu);
 
-
     try {
       const response = await fetch("http://localhost:3001/repositorio", {
         method: "POST",
@@ -61,6 +60,47 @@ export const repohoks = (handleCloseModal) => {
     }
   };
 
+  const handleUpdateDoc = async (id) => {
+    const formData = new FormData();
+    formData.append("asunto", asunto);
+    formData.append("num_doc", num_doc);
+    formData.append("niv_acc_min", niv_acc_min);
+    if (pathDoc) {
+      formData.append("pathDoc", pathDoc);
+    }
+    formData.append("id_tip", id_tip);
+    formData.append("id_usu", id_usu);
+    try {
+      const response = await fetch(
+        `http://localhost:3001/repositorio/documento/${id}`,
+        {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${tokens}`,
+          },
+          body: formData,
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to update document");
+      }
+
+      const result = await response.json();
+      console.log(result);
+      await GetRepo(currentPage);
+      handleCloseModal();
+      setNivAccMin("");
+      setNumDoc("");
+      setAsunto("");
+      setIdTip("");
+      setPathDoc(null);
+
+      //console.log("Document updated:", result);
+    } catch (error) {
+      console.error("Error updating document:", error);
+    }
+  };
+
   const GetRepo = async (page) => {
     try {
       const response = await fetch(
@@ -83,7 +123,6 @@ export const repohoks = (handleCloseModal) => {
       setTotalPages(data.totalPages);
       setPageSize(data.pageSize);
       setTotalDocs(data.totalDocs);
-      //console.log("Repository data:", data);
     } catch (error) {
       console.error("Error fetching repository data:", error);
     }
@@ -94,7 +133,7 @@ export const repohoks = (handleCloseModal) => {
     GetRepo(newPage);
   };
 
-  const handleDeleteDoc = async (idDoc) =>{
+  const handleDeleteDoc = async (idDoc) => {
     try {
       const response = await fetch(
         `http://localhost:3001/repositorio/documento/${idDoc}`,
@@ -104,12 +143,12 @@ export const repohoks = (handleCloseModal) => {
             Authorization: `Bearer ${tokens}`,
           },
         }
-      ); 
+      );
       await GetRepo(currentPage);
     } catch (error) {
       console.error("Error deleting repository data:", error);
     }
-  }
+  };
 
   return {
     id_doc,
@@ -126,6 +165,7 @@ export const repohoks = (handleCloseModal) => {
     setIdTip,
     id_usu,
     handleCreateDoc,
+    handleUpdateDoc,
     GetRepo,
     repoData,
     currentPage,

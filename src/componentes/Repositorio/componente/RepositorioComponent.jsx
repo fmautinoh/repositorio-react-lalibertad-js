@@ -5,14 +5,20 @@ import { PencilIcon, TrashIcon, EyeIcon } from "@heroicons/react/24/solid";
 
 const RepoPrincipalComponent = () => {
   const [showModal, setShowModal] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [selectedDoc, setSelectedDoc] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+
   const handleOpenModal = () => {
     setShowModal(true);
   };
 
   const handleCloseModal = () => {
     setShowModal(false);
+    setEditMode(false);
+    setSelectedDoc(null);
   };
+
   const {
     GetRepo,
     repoData,
@@ -31,6 +37,7 @@ const RepoPrincipalComponent = () => {
     setIdTip,
     handleCreateDoc,
     handleDeleteDoc,
+    handleUpdateDoc, // Asegúrate de tener una función para actualizar documentos
     cargo,
   } = repohoks(handleCloseModal);
 
@@ -50,6 +57,16 @@ const RepoPrincipalComponent = () => {
     }
   };
 
+  const handleEditDoc = (doc) => {
+    setSelectedDoc(doc);
+    setAsunto(doc.asunto);
+    setNumDoc(doc.num_doc);
+    setNivAccMin(doc.niv_acc_min);
+    setIdTip(doc.id_tip);
+    setEditMode(true);
+    setShowModal(true);
+  };
+
   const tipoDocumentos = {
     1: "Oficio",
     2: "Resolución",
@@ -57,11 +74,13 @@ const RepoPrincipalComponent = () => {
     4: "Informe",
   };
 
-  // Filtrar los datos en función del término de búsqueda
-  const filteredData = repoData.filter(doc =>
-    doc.asunto.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    doc.num_doc.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    tipoDocumentos[doc.id_tip].toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredData = repoData.filter(
+    (doc) =>
+      doc.asunto.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      doc.num_doc.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      tipoDocumentos[doc.id_tip]
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -91,7 +110,10 @@ const RepoPrincipalComponent = () => {
               className="shadow bg-white rounded-md p-4 relative"
             >
               <div className="absolute top-2 right-2 flex items-center justify-center">
-                <PencilIcon className="h-5 w-5 text-gray-500 cursor-pointer" />
+                <PencilIcon
+                  className="h-5 w-5 text-gray-500 cursor-pointer"
+                  onClick={() => handleEditDoc(doc)}
+                />
                 {cargo === "Director" && (
                   <TrashIcon
                     className="h-5 w-5 text-gray-500 cursor-pointer ml-2"
@@ -150,7 +172,9 @@ const RepoPrincipalComponent = () => {
         handleFileChange={handleFileChange}
         id_tip={id_tip}
         setIdTip={setIdTip}
-        handleCreateDoc={handleCreateDoc}
+        handleCreateDoc={handleCreateDoc} // Debes asegurarte de pasar handleCreateDoc aquí
+        handleUpdateDoc={handleUpdateDoc}
+        selectedDoc={selectedDoc}
       />
     </div>
   );

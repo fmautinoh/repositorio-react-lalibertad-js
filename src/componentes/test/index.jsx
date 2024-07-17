@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const DocumentoForm = ({
   show,
@@ -13,7 +13,35 @@ const DocumentoForm = ({
   id_tip,
   setIdTip,
   handleCreateDoc,
+  handleUpdateDoc,
+  selectedDoc,
 }) => {
+  useEffect(() => {
+    if (selectedDoc) {
+      setAsunto(selectedDoc.asunto);
+      setNumDoc(selectedDoc.num_doc);
+      setNivAccMin(selectedDoc.niv_acc_min);
+      setIdTip(selectedDoc.id_tip);
+    } else {
+      setAsunto("");
+      setNumDoc("");
+      setNivAccMin("");
+      setIdTip("");
+    }
+  }, [selectedDoc, setAsunto, setNumDoc, setNivAccMin, setIdTip]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (selectedDoc) {
+      handleUpdateDoc(selectedDoc.id_doc);
+    } else {
+      handleCreateDoc();
+    }
+
+    onClose(); // Cerrar el formulario después de manejar la acción
+  };
+
   if (!show) {
     return null;
   }
@@ -21,9 +49,9 @@ const DocumentoForm = ({
   return (
     <div className="fixed inset-0 bg-gray-500 backdrop-blur bg-opacity-50 overflow-y-auto h-full w-full">
       <div className="relative top-20 mx-auto border w-[60%] shadow-lg rounded-md bg-white">
-        <form onSubmit={handleCreateDoc} className="p-6 flex flex-col gap-1">
+        <form onSubmit={handleSubmit} className="p-6 flex flex-col gap-1">
           <h1 className="font-semibold text-gray-800 text-lg mb-2">
-            Agregar Nuevo documento
+            {selectedDoc ? "Editar Documento" : "Agregar Nuevo Documento"}
           </h1>
           <div className="flex flex-col">
             <label>Asunto:</label>
@@ -85,7 +113,7 @@ const DocumentoForm = ({
               type="submit"
               className="bg-green-500 px-4 py-2 rounded-md text-white hover:bg-green-600"
             >
-              Crear Documento
+              {selectedDoc ? "Actualizar Documento" : "Crear Documento"}
             </button>
             <button
               onClick={onClose}
